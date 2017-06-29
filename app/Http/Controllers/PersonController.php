@@ -50,8 +50,6 @@ class PersonController extends Controller
         $validationRulesForUpdate = array_merge($this->validationRules, 
                 ['email' => 'required|email|unique:people,email,'.$person->id]);
 
-        // dd($validationRulesForUpdate);
-
         $this->validate($request, $validationRulesForUpdate);
         $person->update($request->only(['first_name', 'last_name', 'email', 'phone']));
         return response()->json(['message' => 'person created'], 200);
@@ -65,6 +63,6 @@ class PersonController extends Controller
      */
     public function destroy(Person $person)
     {
-        //
+        $person->delete();
     }
 }

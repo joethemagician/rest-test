@@ -21,13 +21,14 @@ class PersonTest extends TestCase
     {
         parent::setUp();
 
+        $this->knownPerson = [ 'first_name'=>'Joe',
+                            'last_name'=>'Stone',
+                            'email'=>'joe@test.com',
+                            'phone'=>'012312345',
+                            ];
+
         // Set up 10 people in db including one with known data
-        $this->knownPersonId = factory(Person::class)->create([
-                                    'first_name'=>'Joe',
-                                    'last_name'=>'Stone',
-                                    'email'=>'joe@test.com',
-                                    'phone'=>'012312345',
-                                ])->id;
+        $this->knownPersonId = factory(Person::class)->create($this->knownPerson)->id;
         // An email not from the known data - for testing that validtion
         // will not reject person's own email for uniqueness on update
         $this->randomExisitingEmail = factory(Person::class, 9)->create()[0]->email;
@@ -233,6 +234,24 @@ class PersonTest extends TestCase
         // Check correct status and data has been added to db
         $response->assertStatus(200);
         $this->assertDatabaseHas('people', array_merge(['id'=>$this->knownPersonId], $updatedPerson));
+        
+    }
+
+    /**
+     * @test - Can delete a person
+     *
+     * @return void
+     */
+    public function can_delete_a_person()
+    {
+        // Using the id of the known person
+        
+        // Send to delete endpoint
+        $response = $this->json('DELETE', 'api/people/'.$this->knownPersonId, [], [], $this->ajaxHeader);
+
+        // Check correct status and data has been added to db
+        $response->assertStatus(200);
+        $this->assertDatabaseMissing('people', $this->knownPerson);
         
     }
 
