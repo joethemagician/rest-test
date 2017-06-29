@@ -7,21 +7,22 @@ angular.module('personService', [])
             return $http.get('/api/people');
         },
 
-        store : function(personData) {
+        store : function(person) {
             return $http({
                 method: 'POST',
                 url: '/api/people',
                 headers: { 'Content-Type' : 'application/json' },
-                data: $.param(personData)
+                data: personData
             });
         },
 
-        update : function(personData) {
+        update : function(person) {
+            console.log(person);
             return $http({
-                method: 'POST',
-                url: '/api/people',
+                method: 'PUT',
+                url: '/api/people/' + person.id,
                 headers: { 'Content-Type' : 'application/json' },
-                data: $.param(personData)
+                data: person
             });
         },
 

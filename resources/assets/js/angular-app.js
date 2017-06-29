@@ -1,1 +1,1 @@
-var app = angular.module('restTest', ['personCtrl', 'personService']);  
+var app = angular.module('restTest', ['personCtrl', 'personService']);

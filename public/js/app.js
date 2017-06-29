@@ -46175,17 +46175,19 @@ angular.module('personCtrl', [])
         // $scope.loading = false;
     });
 
-    $scope.storePerson = function () {
+    $scope.updatePerson = function (person) {
         // $scope.loading = true;
 
-        Person.save($scope.PersonData).then(function (data) {
+        console.log(person);
 
-            Person.get().then(function (getData) {
-                $scope.comments = getData;
-                // $scope.loading = false;
-            });
-        }).error(function (data) {
-            console.log(data);
+        Person.update(person).then(function (data) {
+
+            // Person.get()
+            //     .then(function(result) {
+            //         $scope.people = result.data;
+            //         // $scope.loading = false;
+            //     });
+
         });
     };
 
@@ -46213,21 +46215,22 @@ angular.module('personService', []).factory('Person', function ($http) {
             return $http.get('/api/people');
         },
 
-        store: function store(personData) {
+        store: function store(person) {
             return $http({
                 method: 'POST',
                 url: '/api/people',
                 headers: { 'Content-Type': 'application/json' },
-                data: $.param(personData)
+                data: personData
             });
         },
 
-        update: function update(personData) {
+        update: function update(person) {
+            console.log(person);
             return $http({
-                method: 'POST',
-                url: '/api/people',
+                method: 'PUT',
+                url: '/api/people/' + person.id,
                 headers: { 'Content-Type': 'application/json' },
-                data: $.param(personData)
+                data: person
             });
         },
 

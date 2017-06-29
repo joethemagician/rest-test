@@ -20,26 +20,26 @@
         </div>
         
         <div class="panel" ng-repeat="person in people">
-            <div class="form-group">
-                <div class="row">
-                    <div class="col-xs-6 col-sm-3">
-                        <input class="form-control" value="{{ person.first_name }}">
-                    </div>
-                    <div class="col-xs-6 col-sm-3">
-                        <input class="form-control" value="{{ person.email }}">
-                    </div>
-                    <div class="col-xs-6 col-sm-3">
-                        <input class="form-control" value="{{ person.last_name }}">
-                    </div>
-                    <div class="col-xs-6 col-sm-3">
-                        <input class="form-control" value="{{ person.phone }}">
+            <form ng-submit="updatePerson(person)">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-3">
+                            <input class="form-control" ng-model=" person.first_name">
+                        </div>
+                        <div class="col-xs-6 col-sm-3">
+                            <input class="form-control" ng-model=" person.email">
+                        </div>
+                        <div class="col-xs-6 col-sm-3">
+                            <input class="form-control" ng-model=" person.last_name">
+                        </div>
+                        <div class="col-xs-6 col-sm-3">
+                            <input class="form-control" ng-model=" person.phone">
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <button type="button" class="btn btn-success">Save</button>
-            <button type="button" class="btn btn-danger">Delete</button>
-
+                <button type="submit" class="btn btn-success">Save</button>
+                <button type="button" class="btn btn-danger">Delete</button>
+            </form>
         </div>
         
         <!-- Add new person -->

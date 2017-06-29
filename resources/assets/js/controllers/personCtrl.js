@@ -12,21 +12,20 @@ angular.module('personCtrl', [])
             // $scope.loading = false;
         });
 
-    $scope.storePerson = function() {
+    $scope.updatePerson = function(person) {
         // $scope.loading = true;
 
-        Person.save($scope.PersonData)
+        console.log(person);
+
+        Person.update(person)
             .then(function(data) {
 
-                Person.get()
-                    .then(function(getData) {
-                        $scope.comments = getData;
-                        // $scope.loading = false;
-                    });
+                // Person.get()
+                //     .then(function(result) {
+                //         $scope.people = result.data;
+                //         // $scope.loading = false;
+                //     });
 
-            })
-            .error(function(data) {
-                console.log(data);
             });
     };
 
