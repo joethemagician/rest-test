@@ -9,13 +9,13 @@ class PersonController extends Controller
 {
     
     /**
-     * Show the form for creating a new resource.
+     * Index the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function index()
     {
-        //
+        return response()->json(Person::all());
     }
 
     /**
