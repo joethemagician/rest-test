@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class PersonController extends Controller
 {
     
-    private $validationRulesStore = [
+    private $validationRules = [
         'first_name' => 'required',
         'last_name' => 'required',
         'email' => 'required|email|unique:people',
@@ -32,7 +32,7 @@ class PersonController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, $this->validationRulesStore);
+        $this->validate($request, $this->validationRules);
         Person::create($request->only(['first_name', 'last_name', 'email', 'phone']));
         return response()->json(['message' => 'person created'], 201);
     }
@@ -46,7 +46,15 @@ class PersonController extends Controller
      */
     public function update(Request $request, Person $person)
     {
-        //
+        // Update validation rules to allow same email for this person
+        $validationRulesForUpdate = array_merge($this->validationRules, 
+                ['email' => 'required|email|unique:people,email,'.$person->id]);
+
+        // dd($validationRulesForUpdate);
+
+        $this->validate($request, $validationRulesForUpdate);
+        $person->update($request->only(['first_name', 'last_name', 'email', 'phone']));
+        return response()->json(['message' => 'person created'], 200);
     }
 
     /**
