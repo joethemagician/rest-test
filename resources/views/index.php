@@ -26,12 +26,15 @@
               <div class="modal-body">
                 <div class="form-group">
                     <input ng-model="personToUpdate.first_name" class="form-control">
+                    <div class="error" ng-if="updateErrors.first_name"><p>{{ updateErrors.first_name }}</p></div>
                 </div>
                 <div class="form-group">
                     <input ng-model="personToUpdate.last_name" class="form-control">
+                    <div class="error" ng-if="updateErrors.last_name"><p>{{ updateErrors.last_name }}</p></div>
                 </div>
                 <div class="form-group">
                     <input ng-model="personToUpdate.email" class="form-control">
+                    <div class="error" ng-if="updateErrors.email"><p>{{ updateErrors.email }}</p></div>
                 </div>
                 <div class="form-group">
                     <input ng-model="personToUpdate.phone" class="form-control">
@@ -55,12 +58,15 @@
               <div class="modal-body">
                 <div class="form-group">
                     <input ng-model="personToAdd.first_name" class="form-control">
+                    <div class="error" ng-if="addErrors.first_name"><p>{{ addErrors.first_name }}</p></div>
                 </div>
                 <div class="form-group">
                     <input ng-model="personToAdd.last_name" class="form-control">
+                    <div class="error" ng-if="addErrors.last_name"><p>{{ addErrors.last_name }}</p></div>
                 </div>
                 <div class="form-group">
                     <input ng-model="personToAdd.email" class="form-control">
+                    <div class="error" ng-if="addErrors.email"><p>{{ addErrors.email }}</p></div>
                 </div>
                 <div class="form-group">
                     <input ng-model="personToAdd.phone" class="form-control">

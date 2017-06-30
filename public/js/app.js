@@ -46150,6 +46150,10 @@ angular.module('personCtrl', [])
     // For the update modal
     $scope.personToUpdate = {};
 
+    // Errors
+    $scope.updateErrors = {};
+    $scope.addErrors = {};
+
     // Load the inital data
     Person.get().then(function (response) {
         console.log(response.data);
@@ -46169,7 +46173,11 @@ angular.module('personCtrl', [])
                 $scope.loading = false;
             });
         }).catch(function (error) {
-            console.log(error);
+            if (error.status == 422) {
+                $scope.addErrors.first_name = error.data.first_name ? error.data.first_name[0] : false;
+                $scope.addErrors.last_name = error.data.last_name ? error.data.last_name[0] : false;
+                $scope.addErrors.email = error.data.email ? error.data.email[0] : false;
+            }
         });
     };
 
@@ -46194,7 +46202,11 @@ angular.module('personCtrl', [])
                 $scope.loading = false;
             });
         }).catch(function (error) {
-            console.log(error);
+            if (error.status == 422) {
+                $scope.updateErrors.first_name = error.data.first_name ? error.data.first_name[0] : false;
+                $scope.updateErrors.last_name = error.data.last_name ? error.data.last_name[0] : false;
+                $scope.updateErrors.email = error.data.email ? error.data.email[0] : false;
+            }
         });
     };
 
