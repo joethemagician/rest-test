@@ -46144,27 +46144,57 @@ angular.module('personCtrl', [])
 // inject the Comment service into our controller
 .controller('personController', function ($scope, $http, Person) {
 
-    $scope.personData = {};
+    // For the add modal
+    $scope.personToAdd = {};
 
+    // For the update modal
+    $scope.personToUpdate = {};
+
+    // Load the inital data
     Person.get().then(function (response) {
         console.log(response.data);
         $scope.people = response.data;
-        // $scope.loading = false;
+        $scope.loading = false;
     });
 
-    $scope.updatePerson = function (person) {
-        // $scope.loading = true;
+    $scope.addPerson = function (person) {
 
-        console.log(person);
+        $scope.loading = true;
+
+        Person.store(person).then(function (data) {
+
+            Person.get().then(function (result) {
+                $('#addModal').modal('hide');
+                $scope.people = result.data;
+                $scope.loading = false;
+            });
+        }).catch(function (error) {
+            console.log(error);
+        });
+    };
+
+    $scope.showUpdateModal = function (person) {
+
+        // Add the relevant data to the modal
+        $scope.personToUpdate = person;
+
+        // Show the modal using bootstrap / jQuery
+        $('#updateModal').modal('show');
+    };
+
+    $scope.updatePerson = function (person) {
+
+        $scope.loading = true;
 
         Person.update(person).then(function (data) {
 
-            // Person.get()
-            //     .then(function(result) {
-            //         $scope.people = result.data;
-            //         // $scope.loading = false;
-            //     });
-
+            Person.get().then(function (result) {
+                $('#updateModal').modal('hide');
+                $scope.people = result.data;
+                $scope.loading = false;
+            });
+        }).catch(function (error) {
+            console.log(error);
         });
     };
 
@@ -46200,7 +46230,7 @@ angular.module('personService', []).factory('Person', function ($http) {
                 method: 'POST',
                 url: '/api/people',
                 headers: { 'Content-Type': 'application/json' },
-                data: personData
+                data: person
             });
         },
 

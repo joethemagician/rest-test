@@ -12,7 +12,7 @@ angular.module('personService', [])
                 method: 'POST',
                 url: '/api/people',
                 headers: { 'Content-Type' : 'application/json' },
-                data: personData
+                data: person
             });
         },
 
