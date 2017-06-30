@@ -30,18 +30,21 @@ angular.module('personCtrl', [])
     };
 
     $scope.deletePerson = function(id) {
-        // $scope.loading = true; 
+        if(confirm('Are you sure you want to delete this contact?')){
+            $scope.loading = true;
+            Person.destroy(id)
+                .then(function(data) {
 
-        Person.destroy(id)
-            .then(function(data) {
+                    Person.get()
+                        .then(function(response) {
+                            $scope.people = response.data;
+                            $scope.loading = false;
+                        });
 
-                Person.get()
-                    .then(function(getData) {
-                        $scope.people = getData;
-                        // $scope.loading = false;
-                    });
-
-            });
+                }).catch(function(error){
+                    console.log(error);
+                });
+        }
     };
 
 });

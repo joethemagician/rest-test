@@ -8350,3 +8350,17 @@ button.close {
   }
 }
 
+.rest-test .panel {
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 0px;
+}
+
+.rest-test .panel .btns {
+  float: right;
+}
+
+.rest-test .panel .btns .btn {
+  border-radius: 0px;
+}
+
