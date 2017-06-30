@@ -83,7 +83,7 @@
         <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#">
+                    <span class="navbar-brand">
                         <span>REST test</span>
                     </a>
                 </div>
@@ -93,7 +93,7 @@
         <div class="container">
 
             <div class=panel>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">
+                <button type="button" class="btn btn-primary" ng-click="showAddModal()">
                   + Add contact
                 </button>
             </div>

@@ -21,6 +21,15 @@ angular.module('personCtrl', [])
             $scope.loading = false;
         });
 
+    $scope.showAddModal = function() {
+
+        // clear errors
+        $scope.addErrors = {};
+
+        // Show the modal using bootstrap / jQuery
+        $('#addModal').modal('show');
+    }
+
     $scope.addPerson = function(person) {
 
         $scope.loading = true;
@@ -45,6 +54,9 @@ angular.module('personCtrl', [])
     }
 
     $scope.showUpdateModal = function(person) {
+
+        // Clear any errors
+        $scope.updateErrors = {};
 
         // Add the relevant data to the modal
         $scope.personToUpdate = person;
