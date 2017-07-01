@@ -21,7 +21,7 @@ class PersonController extends Controller
      */
     public function index()
     {
-        return response()->json(Person::all());
+        return response()->json(Person::orderBy('last_name')->get());
     }
 
     /**

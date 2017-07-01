@@ -25,19 +25,19 @@
               </div>
               <div class="modal-body">
                 <div class="form-group">
-                    <input ng-model="personToUpdate.first_name" class="form-control">
+                    <input ng-model="personToUpdate.first_name" class="form-control"  placeholder="First name (required)">
                     <div class="error" ng-if="updateErrors.first_name"><p>{{ updateErrors.first_name }}</p></div>
                 </div>
                 <div class="form-group">
-                    <input ng-model="personToUpdate.last_name" class="form-control">
+                    <input ng-model="personToUpdate.last_name" class="form-control"  placeholder="Last name (required)">
                     <div class="error" ng-if="updateErrors.last_name"><p>{{ updateErrors.last_name }}</p></div>
                 </div>
                 <div class="form-group">
-                    <input ng-model="personToUpdate.email" class="form-control">
+                    <input ng-model="personToUpdate.email" class="form-control"  placeholder="Email (required)">
                     <div class="error" ng-if="updateErrors.email"><p>{{ updateErrors.email }}</p></div>
                 </div>
                 <div class="form-group">
-                    <input ng-model="personToUpdate.phone" class="form-control">
+                    <input ng-model="personToUpdate.phone" class="form-control"  placeholder="Phone number (required)">
                 </div>
               </div>
               <div class="modal-footer">
@@ -57,19 +57,19 @@
               </div>
               <div class="modal-body">
                 <div class="form-group">
-                    <input ng-model="personToAdd.first_name" class="form-control">
+                    <input ng-model="personToAdd.first_name" class="form-control" placeholder="First name (required)">
                     <div class="error" ng-if="addErrors.first_name"><p>{{ addErrors.first_name }}</p></div>
                 </div>
                 <div class="form-group">
-                    <input ng-model="personToAdd.last_name" class="form-control">
+                    <input ng-model="personToAdd.last_name" class="form-control" placeholder="Last name (required)">
                     <div class="error" ng-if="addErrors.last_name"><p>{{ addErrors.last_name }}</p></div>
                 </div>
                 <div class="form-group">
-                    <input ng-model="personToAdd.email" class="form-control">
+                    <input ng-model="personToAdd.email" class="form-control" placeholder="Email (required)">
                     <div class="error" ng-if="addErrors.email"><p>{{ addErrors.email }}</p></div>
                 </div>
                 <div class="form-group">
-                    <input ng-model="personToAdd.phone" class="form-control">
+                    <input ng-model="personToAdd.phone" class="form-control" placeholder="Phone number">
                 </div>
               </div>
               <div class="modal-footer">
@@ -90,7 +90,7 @@
             </div>
         </nav>
 
-        <div class="container">
+        <div class="container" ng-cloak>
 
             <div class=panel>
                 <button type="button" class="btn btn-primary" ng-click="showAddModal()">
