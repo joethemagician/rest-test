@@ -27,3 +27,5 @@ DB_PASSWORD=password
 * Serve application from '/public' directory (.htaccess is set up to direct all requests to public/index.php)
 
 NB - the javascript / SASS files are pre-built into the assets folder in the /public directory - the original files are in the /resources/assets diretory (this includes the separate controller / service files used to create the Angular JS app).
+
+[Live example](http://joest.one)
